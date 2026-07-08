@@ -31,7 +31,7 @@ jobs:
 
       # Step 3: Install dependencies
       - name: Install Dependencies
-        run: npm install --leagcy-peer-deps
+        run: npm install --legacy-peer-deps
 
       # Step 4: Execute the build command
       - name: Run Build Script
