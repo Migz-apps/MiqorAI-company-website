@@ -1,0 +1,38 @@
+# The name of the workflow as it will appear in the GitHub Actions tab
+name: Trigger Project Build
+
+# 1. Define the events that trigger the workflow
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# 2. Define the execution blocks (Jobs)
+jobs:
+  build-project:
+    # Specify the operating system runner
+    runs-on: ubuntu-latest
+
+    # Define the sequence of tasks to execute
+    steps:
+      # Step 1: Check out the repository code onto the runner
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the required environment (e.g., Node.js, Python, Java)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Execute the build command
+      - name: Run Build Script
+        run: npm run build
