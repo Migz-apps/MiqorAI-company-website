@@ -24,31 +24,25 @@ jobs:
       - name: Checkout Repository Code
         uses: actions/checkout@v4
 
-      # Ensure Node.js environment is set up
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22' # Upgraded node runner environment to remove deprecation warnings
 
-      # Correctly install dependencies ignoring peer conflicts
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      # Build the production assets (typically outputs to a folder named 'dist')
       - name: Run Build Script
         run: npm run build
 
-      # Setup GitHub Pages configuration
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5 # Upgraded version
 
-      # Upload the built static files (change 'dist' if your framework outputs elsewhere)
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: './dist' # Ensure this matches your framework build directory (e.g., 'dist', 'build', or 'public')
 
-      # Deploy the uploaded artifact to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
