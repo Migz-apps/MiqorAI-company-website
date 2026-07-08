@@ -31,7 +31,7 @@ jobs:
 
       # Step 3: Install dependencies
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       # Step 4: Execute the build command
       - name: Run Build Script
