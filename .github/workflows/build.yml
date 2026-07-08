@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: '22'
 
-       Silber- name: Install Dependencies
+      - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
       - name: Run Build Script
